@@ -25,6 +25,8 @@ variable "ami_id" {
 
 variable "aws_region" {}
 
+variable "bucket_name" {}
+
 
 
 
