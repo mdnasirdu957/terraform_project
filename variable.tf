@@ -23,7 +23,6 @@ variable "ami_id" {
   type        = string
 }
 
-variable "aws_region" {}
 
 
 

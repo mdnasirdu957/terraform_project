@@ -1,6 +1,6 @@
 
 resource "aws_s3_bucket" "s3_import" {
-    bucket = var.bucket_name
+    bucket = "import-voltron-project-1"
 
     tags = {
         Name = "dev-voltron-test-project"
