@@ -48,7 +48,7 @@ module "s3" {
 # }
 
 module "s3_import" {
-  source = ./modules/s3_import
+  source = "./modules/s3_import"
   bucket_name = "import-voltron-project-1"
 }
 
