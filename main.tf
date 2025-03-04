@@ -34,18 +34,22 @@ module "s3" {
 }
 
 
-module "cdn" {
-  source               = "./modules/cdn"
-  bucket_name          = "${var.environment}-omron-vitalsight-1"
-  acl                  = "private"
-  versioning           = true
-  force_destroy        = true
-  logging              = true
-  logging_bucket       = "${var.environment}-omron-vitalsight-1"
-  cdn_enabled          = true
-  cdn_price_class      = "PriceClass_100"
-  origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
-}
+# module "cdn" {
+#   source               = "./modules/cdn"
+#   bucket_name          = "${var.environment}-omron-vitalsight-1"
+#   acl                  = "private"
+#   versioning           = true
+#   force_destroy        = true
+#   logging              = true
+#   logging_bucket       = "${var.environment}-omron-vitalsight-1"
+#   cdn_enabled          = true
+#   cdn_price_class      = "PriceClass_100"
+#   origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
+# }
 
+module "s3_import" {
+  source = ./modules/s3_import
+  bucket_name = "import-voltron-project-1"
+}
 
 
