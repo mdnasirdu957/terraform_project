@@ -56,5 +56,5 @@ import {
   to = module.s3_import.aws_s3_bucket.s3_import
   id = var.bucket_name
 }
-
+variable "bucket_name" {}
 
