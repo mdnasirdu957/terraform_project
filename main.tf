@@ -47,14 +47,8 @@ module "s3" {
 #   origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
 # }
 
-module "s3_import" {
-  source = "./modules/s3_import"
-  bucket_name = "import-voltron-project-1"
-}
 
-import {
-  to = module.s3_import.aws_s3_bucket.s3_import
-  id = "import-voltron-project-1"
-}
+
+
 
 
