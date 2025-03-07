@@ -45,6 +45,10 @@ module "s3" {
 #   origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
 # }
 
+module "s3_import" {
+source = "./modules"
+}
+
 
 
 
