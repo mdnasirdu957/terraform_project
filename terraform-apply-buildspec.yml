@@ -17,7 +17,7 @@ phases:
   build:
     commands:
       - echo "Planning Terraform deployment..."
-      - terraform plan --var-file="dev.tfvars"
+      - terraform plan --generate-config-out=s3import.tf -var-file="dev.tfvars" -out=tfplan
       
   post_build:
     commands:
