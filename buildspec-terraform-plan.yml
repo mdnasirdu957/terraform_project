@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: latest
+  pre_build:
+    commands:
+      - echo "Initializing Terraform..."
+      - terraform init
+  build:
+    commands:
+      - echo "Planning Terraform deployment..."
+      - terraform plan -var-file="dev.tfvars" -out=tfplan
