@@ -1,5 +1,5 @@
 import {
-    to = aws_vpc.vpc_existing
+    to = aws_vpc.vpc_terraform_existing
     id = "vpc-0100ed9a95753cf16"
 }
 
