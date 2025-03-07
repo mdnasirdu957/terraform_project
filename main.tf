@@ -29,8 +29,6 @@ module "s3" {
   bucket_name   = "${var.environment}-omron-vitalsight-1"
   versioning    = true
   force_destroy = false
-  logging       = true
-  logging_bucket = "${var.environment}-omron-vitalsight-1"
 }
 
 

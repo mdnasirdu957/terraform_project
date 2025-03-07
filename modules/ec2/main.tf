@@ -8,11 +8,5 @@ resource "aws_instance" "main" {
     Name = "${var.environment}-omron-1"
     environment = "${var.environment}"
   }
-    lifecycle {
-    ignore_changes = [
-     # ignore changes to the tags, preventing recreation of the instance
-       security_groups
-    ]
-  }
 }
 
