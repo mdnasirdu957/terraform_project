@@ -14,14 +14,12 @@ phases:
     commands:
       - echo "Initializing Terraform..."
       - terraform init
-      - terraform plan -generate-config-out=s3import.tf --var-file="dev.tfvars"
-      - cat s3import.tf
   build:
     commands:
       - echo "Planning Terraform deployment..."
-      - terraform plan -var-file="dev.tfvars"
+      - terraform plan -generate-config-out=s3import.tf --var-file="dev.tfvars"
+      - cat s3import.tf
   post_build:
     commands:
       - echo "Applying Terraform deployment..."
-      - terraform plan -generate-config-out=s3import.tf --var-file="dev.tfvars"
       - terraform apply -var-file="dev.tfvars" --auto-approve
