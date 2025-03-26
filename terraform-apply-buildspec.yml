@@ -13,13 +13,13 @@ phases:
   pre_build:
     commands:
       - echo "Initializing Terraform..."
-      - terraform init
+      - terraform init -backend-config="${STATE_FILE_BUCKET}" -backend-config="key=${STATE_FILE_PATH}" -backend-config="region=${REGION}" -backend-config="encrypt=true"
   build:
     commands:
       - echo "Planning Terraform deployment..."
-      - terraform plan --generate-config-out=s3_existing.tf -var-file="dev.tfvars" -out=tfplan
+      - terraform plan --generate-config-out=s3_existing.tf -var-file="${TF_VAR}" -out=tfplan
       
   post_build:
     commands:
       - echo "Applying Terraform deployment..."
-      - terraform apply -var-file="dev.tfvars" --auto-approve
+      - terraform apply --generate-config-out=s3_existing.tf -var-file="${TF_VAR}" -out=tfplan | tee plan-output.txt
