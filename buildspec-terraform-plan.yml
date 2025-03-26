@@ -17,5 +17,5 @@ phases:
   build:
     commands:
       - echo "Planning Terraform deployment..."
-      - terraform plan --generate-config-out=s3_existing.tf -var-file="${ENVIRONMENT}.tfvars" -out=tfplan | tee plan-output.txt
+      - terraform plan --generate-config-out=s3_existing.tf -var-file="${TF_VAR}" -out=tfplan | tee plan-output.txt
       - aws s3 cp plan-output.txt s3://hello-voltron-project-1/logs/plan/plan-output.txt
