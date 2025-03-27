@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "this" {
    tags = {
     Name = "this is a part of testing"
    }
-lifecyle {
+lifecycle {
   prevent_destroy = true
 }
 }
