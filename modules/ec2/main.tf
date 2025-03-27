@@ -9,7 +9,7 @@ resource "aws_instance" "main" {
     environment = "${var.environment}"
   }
 lifecycle {
-   prevent_destroy = true
+   prevent_destroy = false
 }
 }
 
