@@ -3,13 +3,13 @@ resource "aws_instance" "main" {
   instance_type   = var.instance_type
   subnet_id       = var.subnet_id
   vpc_security_group_ids = [var.security_group]
-  associate_public_ip_address = "false"
+  associate_public_ip_address = "true"
   tags = {
-    Name = "${var.environment}-omron-1"
+    Name = "${var.environment}-omron-voltron-project-1"
     environment = "${var.environment}"
   }
 lifecycle {
-   prevent_destroy = false
+   prevent_destroy = true
 }
 }
 
