@@ -2,7 +2,7 @@
 module "s3" {
   source        = "./modules/s3"
   bucket_name   = "${var.environment}-omron-vitalsight-1"
-  versioning    = true
+  versioning    = "Disabled"
   force_destroy = false
 }
 
