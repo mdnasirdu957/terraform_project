@@ -7,7 +7,7 @@ module "s3" {
 }
 
 resource "aws_s3_bucket" "New_bucket" {
- bucket_name = "dev-omron-vital-2"
+ bucket = "dev-omron-vital-2"
 
 }
 
