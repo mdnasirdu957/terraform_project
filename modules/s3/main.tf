@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "this" {
   force_destroy = var.force_destroy
    
    tags = {
-    Name = "Hello world"
+    Name = "this is a part of testing"
    }
 
 
