@@ -8,5 +8,8 @@ resource "aws_instance" "main" {
     Name = "${var.environment}-omron-1"
     environment = "${var.environment}"
   }
+  lifecycle = {
+       prevent_destroy = false
+    }
 }
 
