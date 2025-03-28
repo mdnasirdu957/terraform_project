@@ -14,13 +14,18 @@ phases:
     commands:
       - echo "Initializing Terraform..."
       - terraform init -backend-config="bucket=${STATE_FILE_BUCKET}" -backend-config="key=${STATE_FILE_PATH}" -backend-config="region=${REGION}" -backend-config="encrypt=true" -backend-config="dynamodb_table=${DB_TABLE}"
-    build:
+  build:
     commands:
       - echo "Planning Terraform deployment..."
-      - terraform plan --var-file="${TF_VAR}" > plan_output.txt 2>&1 || (echo "Terraform plan failed! Sending notification..." && \
-          ERROR_MSG=$(cat plan_output.txt | tail -n 20) && \
+      - terraform plan --var-file="${TF_VAR}" > plan_output.txt 2>&1 || echo "Terraform plan failed" > plan_failed.txt
+      - if [ -f plan_failed.txt ]; then
+          echo "Terraform plan failed! Sending notification...";
+          ERROR_MSG=$(tail -n 20 plan_output.txt | sed 's/"/\x27/g');  # Escape quotes to avoid SES errors
           aws ses send-email \
-          --from "no-reply@firminiq.com" \
-          --destination "ToAddresses=ngfirminiq@gmail.comm" \
-          --message "Subject={Data=Terraform Plan Failed},Body={Text={Data=Terraform plan failed in AWS CodeBuild. Error Details:\n\n$ERROR_MSG}}" && exit 1)
+            --from "no-reply@firminiq.com" \
+            --destination "ToAddresses=ngfirminiq@gmail.com" \
+            --message "Subject={Data=Terraform Plan Failed},Body={Text={Data=Terraform plan failed in AWS CodeBuild. Error Details:\n\n$ERROR_MSG}}";
+          exit 1;
+        fi
+
 
