@@ -25,7 +25,7 @@ phases:
           echo "Terraform plan failed! Sending notification..."
           ERROR_MSG=$(tail -n 20 plan_output.txt | sed 's/"/\x27/g')  # Escape quotes to avoid SES errors
           aws ses send-email \
-            --from "no-reply@firminiq.com" \
+            --from "ngfirminiq@gmail.com" \
             --destination ToAddresses="ngfirminiq@gmail.com" \
             --message "Subject={Data=Terraform Plan Failed},Body={Text={Data=Terraform plan failed in AWS CodeBuild. Error Details:\n\n$ERROR_MSG}}"  
           exit 1
