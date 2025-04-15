@@ -3,6 +3,6 @@ terraform {
     bucket = ""
     region = ""
     key    = ""
-    dynamodb_table = ""
+    use_lockfile = true
   }
 }
