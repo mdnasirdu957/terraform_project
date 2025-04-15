@@ -2,8 +2,6 @@
 module "s3" {
   source        = "./modules/s3"
   bucket_name   = "${var.environment}-omron-vitalsight-1"
-  versioning    = "Disabled"
-  force_destroy = false
 }
 
 resource "aws_s3_bucket" "New_bucket" {
