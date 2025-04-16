@@ -32,20 +32,6 @@ module "ec2" {
 }
 
 
- module "cdn" {
-  source               = "./modules/cdn"
- bucket_name          = "${var.environment}-omron-vitalsight-1"
- acl                  = "private"
- versioning           = true
- force_destroy        = true
- logging              = true
- logging_bucket       = "${var.environment}-omron-vitalsight-1"
- 
-
-
- }
-
-
 
 
 
