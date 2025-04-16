@@ -1,12 +1,10 @@
 
 # Create CloudFront distribution for the S3 bucket
 resource "aws_cloudfront_distribution" "cdn" {
-  enabled         = var.cdn_enabled
-  price_class     = var.cdn_price_class
   default_root_object = "index.html"
 
   origin {
-    domain_name = var.origin_domain_name
+    domain_name = "S3-${var.bucket_name}"
     origin_id   = "S3-${var.bucket_name}"
 
     custom_origin_config {
