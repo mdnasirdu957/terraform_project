@@ -5,11 +5,6 @@ module "s3" {
   versioning    = "Disabled"
 }
 
-resource "aws_s3_bucket" "New_bucket" {
- bucket = "dev-omron-vital-2"
-
-}
-
 module "vpc" {
   source     = "./modules/vpc"
   vpc_cidr   = var.vpc_cidr
@@ -37,18 +32,18 @@ module "ec2" {
 }
 
 
-# module "cdn" {
-#   source               = "./modules/cdn"
-#   bucket_name          = "${var.environment}-omron-vitalsight-1"
-#   acl                  = "private"
-#   versioning           = true
-#   force_destroy        = true
-#   logging              = true
-#   logging_bucket       = "${var.environment}-omron-vitalsight-1"
-#   cdn_enabled          = true
-#   cdn_price_class      = "PriceClass_100"
-#   origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
-# }
+ module "cdn" {
+  source               = "./modules/cdn"
+ bucket_name          = "${var.environment}-omron-vitalsight-1"
+ acl                  = "private"
+ versioning           = true
+ force_destroy        = true
+logging              = true
+ logging_bucket       = "${var.environment}-omron-vitalsight-1"
+ cdn_enabled          = true
+cdn_price_class      = "PriceClass_100"
+origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
+ }
 
 
 
