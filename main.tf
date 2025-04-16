@@ -38,11 +38,11 @@ module "ec2" {
  acl                  = "private"
  versioning           = true
  force_destroy        = true
-logging              = true
+ logging              = true
  logging_bucket       = "${var.environment}-omron-vitalsight-1"
- cdn_enabled          = true
-cdn_price_class      = "PriceClass_100"
-origin_domain_name   = "${var.environment}-omron-vitalsight-1.s3.amazonaws.com"
+ 
+
+
  }
 
 
